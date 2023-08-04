@@ -1,11 +1,11 @@
-resource "aws_security_group" "allows_redis" {
-  name        = "allows_redis_internal only"
-  description = "allows_redis_internal only"
+resource "aws_security_group" "allows_mysql" {
+  name        = "allows_mysql_internal only"
+  description = "allows_mysql_internal only"
   vpc_id      = data.terraform_remote_state.vpc.outputs.VPC_ID
 
   ingress {
-    description = "redis from VPC"
-    from_port   = 6379
+    description = "mysql from VPC"
+    from_port   = 3306
     to_port     = 6379
     protocol    = "tcp"
     cidr_blocks = [data.terraform_remote_state.vpc.outputs.VPC_CIDR, data.terraform_remote_state.vpc.outputs.DEFAULT_VPC_CIDR]
@@ -19,6 +19,6 @@ resource "aws_security_group" "allows_redis" {
   }
 
   tags = {
-    Name = "roboshop-${var.ENV}-redis-sg"
+    Name = "roboshop-${var.ENV}-mysql-sg"
   }
 }
