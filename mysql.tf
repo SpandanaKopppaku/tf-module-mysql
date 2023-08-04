@@ -20,7 +20,10 @@ resource "aws_db_subnet_group" "mysql_subnet_group" {
   }
 }
 
-
+resource "aws_db_parameter_group" "mysql_pg" {
+  name   = "roboshop-${var.ENV}-mysql-pg"
+  family = "mysql5.7"
+}
 
 
 # # Creates compute machines needed for Documnet DB and these has to be attached to the cluster
