@@ -1,13 +1,13 @@
 resource "aws_db_instance" "mysql" {
   allocated_storage    = 10
   engine               = "mysql"
-  engine_version       = "5.6.17"
+  engine_version       = "5.7"
   instance_class       = "db.t2.micro"
-  db_name              = "mydb"
+  db_name              = "roboshop-${var.ENV}-mysql"
   username             = "foo"
   password             = "bar"
-  db_subnet_group_name = "my_database_subnet_group"
-  parameter_group_name = "default.mysql5.6"
+  db_subnet_group_name = aws_db_subnet_group.mysql_subnet_group.name
+  parameter_group_name = aws_db_parameter_group.mysql_pg.name
 }
 
 # Creates subnet group
