@@ -6,7 +6,7 @@ resource "aws_security_group" "allows_mysql" {
   ingress {
     description = "mysql from VPC"
     from_port   = 3306
-    to_port     = 6379
+    to_port     = 3306
     protocol    = "tcp"
     cidr_blocks = [data.terraform_remote_state.vpc.outputs.VPC_CIDR, data.terraform_remote_state.vpc.outputs.DEFAULT_VPC_CIDR]
   }
